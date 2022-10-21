@@ -12,6 +12,11 @@ import org.springframework.messaging.simp.SimpMessageSendingOperations;
 public class MessageController {
     private final SimpMessageSendingOperations simpleMessageSendingOperations;
 
+    /**
+     * STOMP
+     * MESSAGE:  /pub/hello => /sub/channel/{channelId}
+     * @param message
+     */
     @MessageMapping("/hello")
     public void message(Message message) {
         simpleMessageSendingOperations.convertAndSend("/sub/channel/" + message.getChannelId(), message);
